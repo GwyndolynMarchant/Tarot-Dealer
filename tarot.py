@@ -11,7 +11,10 @@ def generate(path_to_assets, denom=5):
 		svg = file.read()
 	tarot = [os.path.normpath(i) for i in glob.glob(path_to_assets+"/tarot/*")]
 	others = set([os.path.normpath(i) for i in glob.glob(path_to_assets+"/*/*")])
-	others = list(others - set(tarot))
+	if denom > 0:
+		others = list(others - set(tarot))
+	else:
+		others = list(others)
 	random.shuffle(tarot)
 	random.shuffle(others)
 
